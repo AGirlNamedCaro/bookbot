@@ -2,6 +2,8 @@ def main():
     path_to_file = 'books/frankenstein.txt'
     text = get_book_text(path_to_file)
     num_words = get_num_words(text)
+    chars_dict = get_chars_dict(text)
+    print(chars_dict)
     print(f"{num_words} words found in the document")
 
 
@@ -12,5 +14,18 @@ def get_num_words(text):
 def get_book_text(path):
     with open(path) as f:
         return f.read()
+    
+def get_chars_dict(text):
+    chars = {}
+
+    for characters in text:
+        lowered = characters.lower()
+        if lowered in chars:
+            chars[lowered] += 1
+        else:
+            chars[lowered] = 1
+    return chars
+
+
 
 main()
